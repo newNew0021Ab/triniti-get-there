@@ -63,7 +63,7 @@ const HowToGetThere = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-hero py-20 px-4">
+      <section className="relative overflow-hidden bg-gradient-hero py-16 px-4">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(4_90%_58%/0.3),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(280_65%_60%/0.2),transparent_50%)]" />
@@ -79,24 +79,20 @@ const HowToGetThere = () => {
             </p>
           </div>
 
-          <Card className="bg-card/80 backdrop-blur-sm border-primary/20 p-6">
-            <div className="flex items-center gap-2 text-primary mb-3">
+          <Card className="bg-card/80 backdrop-blur-sm border-primary/20 p-6 text-center">
+            <div className="flex items-center justify-center gap-2 text-primary mb-2">
               <MapPin className="w-5 h-5" />
               <h3 className="font-semibold text-lg">Адрес</h3>
             </div>
-            <p className="text-foreground text-lg mb-4">
+            <p className="text-foreground text-lg">
               г. Минск, ул. Притыцкого, 97
             </p>
-            <Button className="bg-primary hover:bg-primary/90">
-              <Navigation className="w-4 h-4 mr-2" />
-              Построить маршрут
-            </Button>
           </Card>
         </div>
       </section>
 
       {/* Transport & Map Section */}
-      <section className="py-16 px-4 bg-secondary/30">
+      <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold mb-8 text-center">
             Выберите удобный способ
