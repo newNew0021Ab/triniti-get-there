@@ -80,13 +80,29 @@ const HowToGetThere = () => {
           </div>
 
           <Card className="bg-card/80 backdrop-blur-sm border-primary/20 p-6 text-center">
-            <div className="flex items-center justify-center gap-2 text-primary mb-2">
+            <div className="flex items-center justify-center gap-2 text-primary mb-3">
               <MapPin className="w-5 h-5" />
               <h3 className="font-semibold text-lg">Адрес</h3>
             </div>
-            <p className="text-foreground text-lg">
+            <p className="text-foreground text-lg mb-4">
               г. Минск, ул. Притыцкого, 97
             </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button 
+                className="bg-primary hover:bg-primary/90"
+                onClick={() => window.open('https://www.google.com/maps/dir/?api=1&destination=53.9006,27.4466', '_blank')}
+              >
+                <Navigation className="w-4 h-4 mr-2" />
+                Google карты
+              </Button>
+              <Button 
+                variant="secondary"
+                onClick={() => window.open('https://yandex.by/maps/?rtext=~53.9006,27.4466', '_blank')}
+              >
+                <Navigation className="w-4 h-4 mr-2" />
+                Яндекс карты
+              </Button>
+            </div>
           </Card>
         </div>
       </section>
@@ -98,7 +114,7 @@ const HowToGetThere = () => {
             Выберите удобный способ
           </h2>
 
-          <div className="grid lg:grid-cols-[320px_1fr] gap-6">
+          <div className="grid lg:grid-cols-[420px_1fr] gap-6">
             {/* Transport Selection */}
             <Card className="bg-gradient-card border-border p-6 h-fit">
               <RadioGroup value={selectedMethod} onValueChange={setSelectedMethod}>
