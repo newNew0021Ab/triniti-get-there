@@ -10,6 +10,7 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       clientPort: 5000,
     },
+    allowedHosts: ['.replit.dev'],
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
