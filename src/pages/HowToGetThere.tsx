@@ -215,7 +215,6 @@ const HowToGetThere = () => {
               <h3 className="font-semibold mb-2">Часы работы</h3>
               <p className="text-sm text-muted-foreground">
                 Магазины: 10:00 - 22:00<br />
-                Кафе: 10:00 - 23:00
               </p>
             </Card>
 
@@ -223,7 +222,7 @@ const HowToGetThere = () => {
               <Phone className="w-8 h-8 text-primary mx-auto mb-3" />
               <h3 className="font-semibold mb-2">Справочная</h3>
               <p className="text-sm text-muted-foreground">
-                +375 (152) 66-02-99
+                (80152) 68-38-11
               </p>
             </Card>
           </div>
