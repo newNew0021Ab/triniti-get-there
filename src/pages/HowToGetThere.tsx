@@ -1,4 +1,4 @@
-import { MapPin, Car, Bus, Plane, Navigation, Phone, Clock } from "lucide-react";
+import { MapPin, Car, Bus, Train, Navigation, Phone, Clock } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -13,47 +13,59 @@ const HowToGetThere = () => {
       id: "walk",
       icon: Navigation,
       title: "Пешком",
-      description: "От станции метро 15 минут",
+      description: "От центра города 20 минут",
       details: [
-        "От станции метро «Спортивная» — 1,2 км (15 минут)",
-        "От центра города — 3 км (35 минут)",
-        "Удобные пешеходные дорожки",
+        "От площади Советской — 1,5 км (20 минут)",
+        "От Старого замка — 2 км (25 минут)",
+        "Удобная пешеходная зона вдоль пр-та Я. Купалы",
       ],
     },
     {
       id: "public",
       icon: Bus,
       title: "Общественный транспорт",
-      description: "Автобусы и маршрутки",
+      description: "Автобусы и троллейбусы",
       details: [
-        "Автобусы: №12, 24, 37, 45",
-        "Маршрутки: №120, 145, 167",
-        "Остановка «ТРК TRINITI»",
-        "Интервал движения: 5-10 минут",
+        "Автобусы: №3, 11, 15, 30",
+        "Троллейбусы: №2, 4, 7",
+        "Остановка «ТРК TRINITI» (проспект Янки Купалы)",
+        "Интервал движения: 5-15 минут",
+      ],
+    },
+    {
+      id: "railway",
+      icon: Train,
+      title: "От ж/д вокзала",
+      description: "2,5 км, 10 минут на такси",
+      details: [
+        "Железнодорожный вокзал Гродно — 2,5 км",
+        "На такси: 10 минут",
+        "Автобусы №3, 11 от вокзала",
+        "Остановка рядом с входом в ТРК",
+      ],
+    },
+    {
+      id: "bus_station",
+      icon: Bus,
+      title: "От автовокзала",
+      description: "3 км, 12 минут на транспорте",
+      details: [
+        "Автовокзал (ул. Красноармейская, 7а) — 3 км",
+        "На такси: 12 минут",
+        "Автобусы №3, 15, 30 до остановки TRINITI",
+        "Также можно доехать до центра и пройти пешком",
       ],
     },
     {
       id: "car",
       icon: Car,
       title: "На автомобиле",
-      description: "Бесплатная парковка 1500+ мест",
+      description: "Бесплатная парковка",
       details: [
-        "С проспекта Независимости — поворот на ул. Притыцкого",
-        "С МКАД — съезд на ул. Одинцова",
-        "Парковка: 3 уровня, 1500+ мест",
-        "Первые 3 часа бесплатно",
-      ],
-    },
-    {
-      id: "airport",
-      icon: Plane,
-      title: "Из аэропорта",
-      description: "35 минут на такси",
-      details: [
-        "Национальный аэропорт Минск — 45 км",
-        "На такси: 35-40 минут",
-        "Автобус №300Э до «Площадь Победы», далее метро",
-        "Маршрутное такси №1400",
+        "С центра — по пр-ту Янки Купалы на север",
+        "Адрес для навигатора: пр-т Я. Купалы, 87",
+        "Большая бесплатная парковка",
+        "Удобный въезд с главного проспекта",
       ],
     },
   ];
@@ -75,7 +87,7 @@ const HowToGetThere = () => {
               КАК ДОБРАТЬСЯ
             </h1>
             <p className="text-xl text-muted-foreground">
-              ТРК TRINITI — в самом центре событий
+              ТРК TRINITI в Гродно — в самом центре событий
             </p>
           </div>
 
@@ -85,19 +97,21 @@ const HowToGetThere = () => {
               <h3 className="font-semibold text-lg">Адрес</h3>
             </div>
             <p className="text-foreground text-lg mb-4">
-              г. Минск, ул. Притыцкого, 97
+              г. Гродно, пр-т Янки Купалы, 87
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Button 
+                data-testid="button-google-maps"
                 className="bg-primary hover:bg-primary/90"
-                onClick={() => window.open('https://www.google.com/maps/dir/?api=1&destination=53.9006,27.4466', '_blank')}
+                onClick={() => window.open('https://www.google.com/maps/dir/?api=1&destination=53.649866,23.854529', '_blank')}
               >
                 <Navigation className="w-4 h-4 mr-2" />
                 Google карты
               </Button>
               <Button 
+                data-testid="button-yandex-maps"
                 variant="secondary"
-                onClick={() => window.open('https://yandex.by/maps/?rtext=~53.9006,27.4466', '_blank')}
+                onClick={() => window.open('https://yandex.by/maps/?rtext=~53.649866,23.854529', '_blank')}
               >
                 <Navigation className="w-4 h-4 mr-2" />
                 Яндекс карты
@@ -121,7 +135,12 @@ const HowToGetThere = () => {
                 <div className="space-y-4">
                   {transportMethods.map((method) => (
                     <div key={method.id} className="flex items-start gap-3">
-                      <RadioGroupItem value={method.id} id={method.id} className="mt-1" />
+                      <RadioGroupItem 
+                        value={method.id} 
+                        id={method.id} 
+                        className="mt-1"
+                        data-testid={`radio-${method.id}`}
+                      />
                       <Label 
                         htmlFor={method.id} 
                         className="flex items-start gap-3 cursor-pointer flex-1"
@@ -154,7 +173,9 @@ const HowToGetThere = () => {
                     <currentMethod.icon className="w-6 h-6 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-1">{currentMethod.title}</h3>
+                    <h3 className="text-xl font-semibold mb-1" data-testid="text-method-title">
+                      {currentMethod.title}
+                    </h3>
                     <p className="text-sm text-muted-foreground">{currentMethod.description}</p>
                   </div>
                 </div>
@@ -168,7 +189,11 @@ const HowToGetThere = () => {
                   ))}
                 </ul>
 
-                <Button className="w-full bg-primary hover:bg-primary/90">
+                <Button 
+                  data-testid="button-build-route"
+                  className="w-full bg-primary hover:bg-primary/90"
+                  onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=53.649866,23.854529`, '_blank')}
+                >
                   <Navigation className="w-4 h-4 mr-2" />
                   Построить маршрут
                 </Button>
@@ -182,7 +207,7 @@ const HowToGetThere = () => {
               <Car className="w-8 h-8 text-primary mx-auto mb-3" />
               <h3 className="font-semibold mb-2">Парковка</h3>
               <p className="text-sm text-muted-foreground">
-                1500+ мест на 3 уровнях
+                Бесплатная парковка для посетителей
               </p>
             </Card>
 
@@ -190,7 +215,8 @@ const HowToGetThere = () => {
               <Clock className="w-8 h-8 text-primary mx-auto mb-3" />
               <h3 className="font-semibold mb-2">Часы работы</h3>
               <p className="text-sm text-muted-foreground">
-                Ежедневно с 10:00 до 22:00
+                Магазины: 10:00 - 22:00<br />
+                Кафе: 10:00 - 23:00
               </p>
             </Card>
 
@@ -198,7 +224,7 @@ const HowToGetThere = () => {
               <Phone className="w-8 h-8 text-primary mx-auto mb-3" />
               <h3 className="font-semibold mb-2">Справочная</h3>
               <p className="text-sm text-muted-foreground">
-                +375 (29) 123-45-67
+                +375 (152) 66-02-99
               </p>
             </Card>
           </div>
@@ -209,7 +235,10 @@ const HowToGetThere = () => {
       <footer className="bg-card/50 border-t border-border py-8 px-4">
         <div className="container mx-auto max-w-6xl text-center">
           <div className="text-2xl font-bold text-primary mb-2">TRINITI</div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground mb-2">
+            г. Гродно, пр-т Янки Купалы, 87
+          </p>
+          <p className="text-xs text-muted-foreground">
             © 2025 ТРК TRINITI. Все права защищены.
           </p>
         </div>
