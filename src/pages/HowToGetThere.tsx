@@ -1,10 +1,16 @@
 import { MapPin, Car, Bus, Plane, Navigation, Phone, Clock } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
 
 const HowToGetThere = () => {
+  const [selectedMethod, setSelectedMethod] = useState("walk");
+
   const transportMethods = [
     {
+      id: "walk",
       icon: Navigation,
       title: "Пешком",
       description: "От станции метро 15 минут",
@@ -15,6 +21,7 @@ const HowToGetThere = () => {
       ],
     },
     {
+      id: "public",
       icon: Bus,
       title: "Общественный транспорт",
       description: "Автобусы и маршрутки",
@@ -26,6 +33,7 @@ const HowToGetThere = () => {
       ],
     },
     {
+      id: "car",
       icon: Car,
       title: "На автомобиле",
       description: "Бесплатная парковка 1500+ мест",
@@ -37,6 +45,7 @@ const HowToGetThere = () => {
       ],
     },
     {
+      id: "airport",
       icon: Plane,
       title: "Из аэропорта",
       description: "35 минут на такси",
@@ -48,6 +57,8 @@ const HowToGetThere = () => {
       ],
     },
   ];
+
+  const currentMethod = transportMethods.find(m => m.id === selectedMethod) || transportMethods[0];
 
   return (
     <div className="min-h-screen bg-background">
@@ -76,84 +87,82 @@ const HowToGetThere = () => {
             <p className="text-foreground text-lg mb-4">
               г. Минск, ул. Притыцкого, 97
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button className="bg-primary hover:bg-primary/90">
-                <Navigation className="w-4 h-4 mr-2" />
-                Построить маршрут
-              </Button>
-              <Button variant="secondary">
-                <Phone className="w-4 h-4 mr-2" />
-                +375 (29) 123-45-67
-              </Button>
-            </div>
+            <Button className="bg-primary hover:bg-primary/90">
+              <Navigation className="w-4 h-4 mr-2" />
+              Построить маршрут
+            </Button>
           </Card>
         </div>
       </section>
 
-      {/* Transport Methods */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            Выберите удобный способ
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {transportMethods.map((method, index) => (
-              <Card
-                key={index}
-                className="group relative overflow-hidden bg-gradient-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow"
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all" />
-                
-                <div className="relative p-6">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-all">
-                      <method.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold mb-1">{method.title}</h3>
-                      <p className="text-sm text-muted-foreground">{method.description}</p>
-                    </div>
-                  </div>
-
-                  <ul className="space-y-2">
-                    {method.details.map((detail, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm">
-                        <span className="text-primary mt-1">•</span>
-                        <span className="text-foreground/90">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
+      {/* Transport & Map Section */}
       <section className="py-16 px-4 bg-secondary/30">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold mb-8 text-center">
-            Интерактивная карта
+            Выберите удобный способ
           </h2>
 
-          <Card className="overflow-hidden border-border bg-card">
-            <div className="aspect-video bg-gradient-to-br from-secondary to-muted relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-16 h-16 text-primary mx-auto mb-4 animate-bounce" />
-                  <p className="text-lg font-semibold mb-2">ТРК TRINITI</p>
-                  <p className="text-sm text-muted-foreground">
-                    г. Минск, ул. Притыцкого, 97
-                  </p>
-                  <Button className="mt-4 bg-primary hover:bg-primary/90">
-                    Открыть в картах
-                  </Button>
+          <div className="grid lg:grid-cols-[320px_1fr] gap-6">
+            {/* Transport Selection */}
+            <Card className="bg-gradient-card border-border p-6 h-fit">
+              <RadioGroup value={selectedMethod} onValueChange={setSelectedMethod}>
+                <div className="space-y-4">
+                  {transportMethods.map((method) => (
+                    <div key={method.id} className="flex items-start gap-3">
+                      <RadioGroupItem value={method.id} id={method.id} className="mt-1" />
+                      <Label 
+                        htmlFor={method.id} 
+                        className="flex items-start gap-3 cursor-pointer flex-1"
+                      >
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          <method.icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-semibold mb-1">{method.title}</div>
+                          <div className="text-sm text-muted-foreground">{method.description}</div>
+                        </div>
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+              </RadioGroup>
+            </Card>
+
+            {/* Map with Details */}
+            <Card className="overflow-hidden border-border bg-card">
+              <div className="aspect-video bg-gradient-to-br from-secondary to-muted relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <MapPin className="w-16 h-16 text-primary animate-bounce" />
                 </div>
               </div>
-            </div>
-          </Card>
+              
+              <div className="p-6 bg-card border-t border-border">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="p-3 bg-primary/10 rounded-xl">
+                    <currentMethod.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-1">{currentMethod.title}</h3>
+                    <p className="text-sm text-muted-foreground">{currentMethod.description}</p>
+                  </div>
+                </div>
+
+                <ul className="space-y-2 mb-4">
+                  {currentMethod.details.map((detail, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm">
+                      <span className="text-primary mt-1">•</span>
+                      <span className="text-foreground/90">{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button className="w-full bg-primary hover:bg-primary/90">
+                  <Navigation className="w-4 h-4 mr-2" />
+                  Построить маршрут
+                </Button>
+              </div>
+            </Card>
+          </div>
 
           {/* Parking Info */}
           <div className="grid md:grid-cols-3 gap-6 mt-8">
