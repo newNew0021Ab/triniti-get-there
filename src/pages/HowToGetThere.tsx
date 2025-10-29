@@ -214,7 +214,7 @@ const HowToGetThere = () => {
               <Clock className="w-8 h-8 text-primary mx-auto mb-3" />
               <h3 className="font-semibold mb-2">Часы работы</h3>
               <p className="text-sm text-muted-foreground">
-                Магазины: 10:00 - 22:00<br />
+                10:00 - 22:00<br />
               </p>
             </Card>
 
