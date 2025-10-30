@@ -214,7 +214,7 @@ const HowToGetThere = () => {
               <Clock className="w-8 h-8 text-primary mx-auto mb-3" />
               <h3 className="font-semibold mb-2">Часы работы</h3>
               <p className="text-sm text-muted-foreground">
-                10:00 - 22:00<br />
+                Магазины 10:00 - 22:00
               </p>
             </Card>
 
@@ -226,6 +226,62 @@ const HowToGetThere = () => {
               </p>
             </Card>
           </div>
+
+          {/* Detailed Working Hours */}
+          <Card className="bg-gradient-card border-border p-6 mt-8">
+            <div className="flex items-center gap-2 mb-6">
+              <Clock className="w-6 h-6 text-primary" />
+              <h2 className="text-2xl font-bold">Время работы</h2>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                  <span className="text-foreground">Магазины</span>
+                  <span className="font-semibold text-primary">10:00-22:00</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                  <span className="text-foreground">Продуктовый гипермаркет</span>
+                  <span className="font-semibold text-primary">9:00-23:00</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                  <span className="text-foreground">Строительный гипермаркет</span>
+                  <span className="font-semibold text-primary">8:00-22:00</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                  <span className="text-foreground">Аптека</span>
+                  <span className="font-semibold text-primary">9:00-22:00</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                  <span className="text-foreground">Кафе и рестораны</span>
+                  <span className="font-semibold text-primary">10:00-23:00 (КFC 9:00-23:00)</span>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                  <span className="text-foreground">Детский центр</span>
+                  <span className="font-semibold text-primary">10:00-22:00</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                  <span className="text-foreground">Ледовый каток вн-вс</span>
+                  <span className="font-semibold text-primary">11:00-23:00</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                  <span className="text-foreground">Кинопространство</span>
+                  <span className="font-semibold text-primary">вс-чт до 23:00, пт-сб до 01:00</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                  <span className="text-foreground">Фитнес-клуб, буд</span>
+                  <span className="font-semibold text-primary">7:00-23:00</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                  <span className="text-foreground">Фитнес-клуб, вых</span>
+                  <span className="font-semibold text-primary">9:00-21:00</span>
+                </div>
+              </div>
+            </div>
+          </Card>
         </div>
       </section>
 
