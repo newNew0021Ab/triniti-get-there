@@ -200,33 +200,6 @@ const HowToGetThere = () => {
             </Card>
           </div>
 
-          {/* Parking Info */}
-          <div className="grid md:grid-cols-3 gap-6 mt-8">
-            <Card className="bg-gradient-card border-border p-6 text-center">
-              <Car className="w-8 h-8 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold mb-2">Парковка</h3>
-              <p className="text-sm text-muted-foreground">
-                Бесплатная парковка для посетителей
-              </p>
-            </Card>
-
-            <Card className="bg-gradient-card border-border p-6 text-center">
-              <Clock className="w-8 h-8 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold mb-2">Часы работы</h3>
-              <p className="text-sm text-muted-foreground">
-                Магазины 10:00 - 22:00
-              </p>
-            </Card>
-
-            <Card className="bg-gradient-card border-border p-6 text-center">
-              <Phone className="w-8 h-8 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold mb-2">Справочная</h3>
-              <p className="text-sm text-muted-foreground">
-                (80152) 68-38-11
-              </p>
-            </Card>
-          </div>
-
           {/* Detailed Working Hours */}
           <Card className="bg-gradient-card border-border p-6 mt-8">
             <div className="flex items-center gap-2 mb-6">
@@ -282,6 +255,25 @@ const HowToGetThere = () => {
               </div>
             </div>
           </Card>
+
+          {/* Parking Info */}
+          <div className="grid md:grid-cols-2 gap-6 mt-8">
+            <Card className="bg-gradient-card border-border p-6 text-center">
+              <Car className="w-8 h-8 text-primary mx-auto mb-3" />
+              <h3 className="font-semibold mb-2">Парковка</h3>
+              <p className="text-sm text-muted-foreground">
+                Бесплатная парковка для посетителей
+              </p>
+            </Card>
+
+            <Card className="bg-gradient-card border-border p-6 text-center">
+              <Phone className="w-8 h-8 text-primary mx-auto mb-3" />
+              <h3 className="font-semibold mb-2">Справочная</h3>
+              <p className="text-sm text-muted-foreground">
+                (80152) 68-38-11
+              </p>
+            </Card>
+          </div>
         </div>
       </section>
 
